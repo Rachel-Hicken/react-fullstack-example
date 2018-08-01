@@ -1,6 +1,6 @@
 # react-fullstack-example
 This repository is a reference for setting a complete full-stack React App.  It will assume that you are starting from no exposure to React.
-##Intial Setup
+## Intial Setup
 To begin install the following using your command line:
 * `npm install -global` will install NPM globally
 * `npm i -g create-react-app` 
