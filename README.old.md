@@ -9,10 +9,14 @@ For the back end install the following using your command line:
 * `npm i express massive dotenv`
 * `npm i -g nodemon`
 
-Go to the .gitignore file and add .env to the list
-Add a folder named `server` to the main directory of your app
+Go to the .gitignore file and add .env to the list.
+
+Add a folder named `server` to the main directory of your app.
+
 Go to the package.json file:
+
     -add "main" : "server/index.js",
+
     -add "proxy" : "http://localhost:3030", or whatever port you want to use for the back end
 
 In the main directory create a file called `.env`
