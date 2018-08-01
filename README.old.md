@@ -39,11 +39,13 @@ Node JS is not yet ES6 compatible so the syntax will be a little different from 
 Require the following:
 
 const express = require('express'),
+
 bodyParser = require('body-parser'),
+
 massive = require('massive');
 
 require('dotenv').config();
 
 # Setup App.js
-Remove import logo
+Remove import logo.
 remove everything between outer div
