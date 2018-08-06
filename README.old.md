@@ -39,13 +39,18 @@ Node JS is not yet ES6 compatible so the syntax will be a little different from 
 Require the following:
 
 const express = require('express'),
-
 bodyParser = require('body-parser'),
-
 massive = require('massive');
 
 require('dotenv').config();
 
+# Setup a Heroku PostreSQL Database
+...
+...
+Add `CONNECTION_STRING = [connection string info here]` to your .env file
+Type `nodemon` into your command line and verify that you have a proper connection
+
 # Setup App.js
 Remove import logo.
-remove everything between outer div
+
+Remove everything between outer div
