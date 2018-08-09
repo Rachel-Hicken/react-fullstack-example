@@ -18,7 +18,7 @@ Go to the .gitignore file and add `.env` to the list.
 Add a folder named `server` to the main directory of your app.
 Add a file named `index.js` in the server folder.
 Add a file named `controller.js` in the server folder.
-Add a folder named `db`, when we set up massive it will look specifically for the 'db' folder.
+Add a folder named `db` to the main directory, when we set up massive it will look specifically for the 'db' folder.
 
 Go to the package.json file:
 
@@ -53,4 +53,27 @@ Type `nodemon` into your command line and verify that you have a proper connecti
 # Setup App.js
 Remove import logo.
 
-Remove everything between outer div
+Remove everything between outer div.
+
+Add <h1> tag with the name of your list.
+
+To add statefulness to the class component insert these lines under the class declaration
+   constructor() {
+        super()
+        this.state = {
+
+        }
+    }
+Add an array object to state that will hold the list
+
+pet_names: []
+
+import axios from 'axios'
+
+# Add information to the Database
+Create seed file?
+pet_seed.sql
+add_pet.sql
+change_pet.sql
+remove_pet.sql
+
