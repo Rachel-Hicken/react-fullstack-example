@@ -3,6 +3,8 @@ const express = require('express'),
       massive = require('massive');
 require('dotenv').config();
 
+const pc = require('./controller');
+
 const {
     SERVER_PORT,
     CONNECTION_STRING
@@ -23,8 +25,9 @@ app.use(bodyParser.json());
 
 
 ///////////Endpoints/////////////////////////
-
-
+app.get('/pets', pc.view_pets);
+app.post('/pet/add', pc.add_pet);
+app.delete('/pet/delete/:id', pc.delete_pet);
 
 /////////////Check server connection///////////
 app.listen(SERVER_PORT, () => {
