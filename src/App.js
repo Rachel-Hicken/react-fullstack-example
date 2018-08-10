@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import EditableLabel from 'react-inline-editing';
 
 class App extends Component {
   constructor() {
@@ -10,9 +11,8 @@ class App extends Component {
       new_pet_name: '',
       new_pet_species_id: 1,
       new_pet_age: '',
-      update_pet_name: '',
-      update_pet_age: '',
-      viewInput: false
+      // update_pet_name: '',
+      // update_pet_age: ''
     }
     this.viewPets = this.viewPets.bind(this);
     this.addPet = this.addPet.bind(this);
@@ -21,6 +21,8 @@ class App extends Component {
     this.nameHandler = this.nameHandler.bind(this);
     this.petSpeciesHandler = this.petSpeciesHandler.bind(this);
     this.petAgeHandler = this.petAgeHandler.bind(this);
+    this.updateNameHandlerFocusOut = this.updateNameHandlerFocusOut.bind(this);
+    this.updatePetAgeHandlerFocusOut = this.updatePetAgeHandlerFocusOut.bind(this);
   }
   componentDidMount() {
     this.viewPets();
@@ -38,8 +40,14 @@ class App extends Component {
     axios.post('/pet/add', {pet_name: this.state.new_pet_name, species_id: this.state.new_pet_species_id, pet_age: this.state.new_pet_age}).then(res => {})
   }
 
-  updatePet() {
-    
+  updatePet(id) {
+    // console.log(this.state.pet_name, this.state.pet_age)
+    // console.log(id)
+    axios.put(`/pet/update/${id}`, { pet_name: this.state.pet_name, pet_age: this.state.pet_age }).then(res => {
+      this.setState({
+        pet_names: res.data
+      })
+    }).catch((e) => { console.log(e) });
   }
 
   deletePet(id) {
@@ -56,13 +64,14 @@ class App extends Component {
     this.setState({
       new_pet_name: value
     });
+    console.log(this.state.pet_name)
   }
 
   petSpeciesHandler(value) {
     this.setState({
       new_pet_species_id: value
     });
-
+    console.log(this.state.pet_age)
   }
 
   petAgeHandler(value) {
@@ -72,16 +81,16 @@ class App extends Component {
 
   }
 
-  updateNameHandler(value) {
+  updateNameHandlerFocusOut(value) {
     this.setState({
-      update_pet_name: value
+      pet_name: value
     });
     console.log(this.state.new_pet_name)
   }
 
-  updatePetAgeHandler(value) {
+  updatePetAgeHandlerFocusOut(value) {
     this.setState({
-      update_pet_age: value
+      pet_age: value
     });
 
   }
@@ -91,12 +100,18 @@ class App extends Component {
       return (
         <div key={el.pet_id + 'newId'}>
           <ul>
+            <EditableLabel
+              text={el.pet_name}
+              onFocusOut={this.updateNameHandlerFocusOut} />
+            <EditableLabel
+              text={el.pet_age}
+              onFocusOut={this.updatePetAgeHandlerFocusOut}/>
             <p>{el.pet_id}</p>
-            <p>{el.pet_name}</p>
+            {/* <p>{el.pet_name}</p> */}
             <p>{el.species_name}</p>
-            <p>{el.pet_age}</p>
-            <button className="edit_button">Edit</button>
-            <button onClick={this.updatePet()}
+            {/* <p>{el.pet_age}</p> */}
+            {/* <button className="edit_button">Edit</button> */}
+            <button onClick={()=>this.updatePet(el.pet_id)}>Save</button>
             <button className="delete_button" onClick={()=> this.deletePet(el.pet_id)}>Delete</button>
           </ul>
         </div>

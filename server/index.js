@@ -27,6 +27,7 @@ app.use(bodyParser.json());
 ///////////Endpoints/////////////////////////
 app.get('/pets', pc.view_pets);
 app.post('/pet/add', pc.add_pet);
+app.put('/pet/update/:id', pc.update_pet);
 app.delete('/pet/delete/:id', pc.delete_pet);
 
 /////////////Check server connection///////////

@@ -24,8 +24,11 @@ module.exports = {
         const { id } = req.params;
         // console.log(req.body)
         dbInstance.change_pet([pet_name, pet_age, id])
-            .then(() => res.status(200).send())
-            .catch((e) => { console.log(e); res.status(500).send("Couldn't get change_pet") });
+            .then(() => {
+                dbInstance.view_pets().then(pets => {
+                    res.status(200).send(pets)
+                })
+            }).catch((e) => { console.log(e); res.status(500).send("Couldn't get update_pet") });
     },
     delete_pet: (req, res, next) => {
         const dbInstance = req.app.get('db');
